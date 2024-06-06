@@ -44,3 +44,7 @@ func gameover():
 	gameover_instance.set_score_ui(game_score)
 	Engine.time_scale = 0
 	$UI.add_child(gameover_instance)
+
+
+func _on_enemy_spawner_path_enemy_spawned(path_enemy_instance: PathEnemy):
+	path_enemy_instance.enemy.connect("dead", _on_enemy_dead)
