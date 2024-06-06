@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b035xathrlssr"]
+[gd_scene load_steps=5 format=3 uid="uid://b035xathrlssr"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7nwvu"]
 [ext_resource type="Texture2D" uid="uid://cxigp54cpj64d" path="res://assets/textures/player_ship.png" id="1_24d4p"]
+[ext_resource type="AudioStream" uid="uid://bgsi871s2jube" path="res://assets/audio/sfx_laser2.wav" id="3_ky2m6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26ix5"]
 radius = 22.0374
 height = 45.544
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_7nwvu")
 
@@ -20,3 +22,6 @@ texture = ExtResource("1_24d4p")
 position = Vector2(9, 1)
 scale = Vector2(1.36132, 2.56111)
 shape = SubResource("CapsuleShape2D_26ix5")
+
+[node name="ShootSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ky2m6")

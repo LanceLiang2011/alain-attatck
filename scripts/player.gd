@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 @export var move_speed := 250
@@ -5,6 +6,9 @@ extends CharacterBody2D
 
 @onready var rocket_scene: PackedScene = preload("res://scenes/rocket.tscn")
 @onready var rockets = $"../Rockets"
+@onready var shoot_sfx = $ShootSFX
+
+signal took_damage(damage: int)
 
 var shoot_timer: float = 0.0
 var is_shooting := false
@@ -14,6 +18,7 @@ func _process(delta):
 	process_shooting_timer(delta)
 	if Input.is_action_just_pressed("shoot") && !is_shooting:
 		is_shooting = true
+		shoot_sfx.play()
 		shoot_timer = 0.0
 		shoot()
 
@@ -62,3 +67,11 @@ func clamp_player():
 		#global_position.y = 0
 	#if global_position.y > viewport_size.y:
 		#global_position.y = viewport_size.y
+
+
+func take_damage(damage: int = 1):
+	emit_signal("took_damage", damage)
+
+
+func die():
+	queue_free()

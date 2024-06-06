@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxrq6p0u5iaug"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_605qk"]
+[ext_resource type="Texture2D" uid="uid://dvpioqog4rv7o" path="res://assets/textures/enemy_ship.png" id="1_tofsv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6os1b"]
+radius = 65.1783
+height = 130.357
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_605qk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_tofsv")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.12, 0.480001)
+shape = SubResource("CapsuleShape2D_6os1b")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(20, -50)
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CapsuleShape2D_6os1b")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(20, 50)
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CapsuleShape2D_6os1b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

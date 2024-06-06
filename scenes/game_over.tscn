@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=3 uid="uid://cslbcg60bqth2"]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_1jnwm"]
+[ext_resource type="LabelSettings" uid="uid://druju0evc77ir" path="res://scenes/hud.tres" id="1_abule"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77k7q"]
+bg_color = Color(0.92, 0.3404, 0.3404, 0.588235)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_t86qa"]
+font_size = 64
+
+[sub_resource type="InputEventAction" id="InputEventAction_sjpky"]
+action = &"shoot"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_skm8i"]
+events = [SubResource("InputEventAction_sjpky")]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1jnwm")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -208.0
+offset_right = 340.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_77k7q")
+
+[node name="GameOverText" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -171.5
+offset_top = -137.5
+offset_right = 171.5
+offset_bottom = -54.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_t86qa")
+
+[node name="Score" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -11.5
+offset_right = 48.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE: 9999"
+label_settings = ExtResource("1_abule")
+
+[node name="Retry" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 75.0
+offset_right = 64.0
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+shortcut = SubResource("Shortcut_skm8i")
+text = "Retry"
+
+[connection signal="pressed" from="Panel/Retry" to="." method="_on_retry_pressed"]
