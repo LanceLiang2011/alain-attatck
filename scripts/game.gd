@@ -33,6 +33,7 @@ func _on_enemy_spawner_enemy_spawned(enemy_instance: Enemy):
 func _on_enemy_dead(score: int):
 	enemy_hit_sfx.play()
 	game_score += score
+	hud.set_score_ui(game_score)
 
 
 

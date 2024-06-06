@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b035xathrlssr"]
+[gd_scene load_steps=7 format=3 uid="uid://b035xathrlssr"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7nwvu"]
 [ext_resource type="Texture2D" uid="uid://cxigp54cpj64d" path="res://assets/textures/player_ship.png" id="1_24d4p"]
@@ -7,6 +7,14 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26ix5"]
 radius = 22.0374
 height = 45.544
+
+[sub_resource type="Curve" id="Curve_oi6k6"]
+_data = [Vector2(0, 0.505646), 0.0, 0.0, 0, 0, Vector2(0.502947, 0.98273), 0.0, 0.0, 0, 0, Vector2(1, 0.352375), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_uca3o"]
+offsets = PackedFloat32Array(0, 0.538803, 1)
+colors = PackedColorArray(1, 0.764833, 0.17, 0, 0.91, 0.479267, 0.2639, 1, 1, 0.00999999, 0.0264997, 0)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 2
@@ -25,3 +33,19 @@ shape = SubResource("CapsuleShape2D_26ix5")
 
 [node name="ShootSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ky2m6")
+
+[node name="FireVFX" type="CPUParticles2D" parent="."]
+position = Vector2(-43, 0)
+amount = 20
+lifetime = 0.3
+emission_shape = 3
+emission_rect_extents = Vector2(1, 10)
+direction = Vector2(-1, 2.08165e-12)
+spread = 30.0
+gravity = Vector2(2.08165e-12, 2.08165e-12)
+initial_velocity_min = 200.0
+initial_velocity_max = 250.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_oi6k6")
+color_ramp = SubResource("Gradient_uca3o")
